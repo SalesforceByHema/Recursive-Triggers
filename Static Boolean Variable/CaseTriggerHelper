@@ -8,15 +8,12 @@ public class CaseTriggerHelper {
                 Contactids.add(c.ContactId);
             }
         }
-        if(!Contactids.isEmpty()){
-            
+        if(!Contactids.isEmpty()){         
             list<Contact> Contacts=[select id,name,Description from Contact where id in:Contactids]; 
-            
             for(Contact con:Contacts){
                 con.Description=' High Priority Case opened';
                 
-            }
-            
+            }      
             update Contacts; 
         }
     }
