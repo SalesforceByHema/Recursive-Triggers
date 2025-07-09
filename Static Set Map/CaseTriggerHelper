@@ -10,14 +10,11 @@ public class CaseTriggerHelper {
             }
         }
         if(!Contactids.isEmpty()){
-            
-            list<Contact> Contacts=[select id,name,Description from Contact where id in:Contactids]; 
-            
+        list<Contact> Contacts=[select id,name,Description from Contact where id in:Contactids]; 
             for(Contact con:Contacts){
                 con.Description=' High Priority Case opened';
                 
-            }
-            
+            }         
             update Contacts; 
         }
     }
