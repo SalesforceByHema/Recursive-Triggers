@@ -1,0 +1,31 @@
+public class CaseTriggerHelper {
+  
+    public static void contactUpdate(list<Case> Cases){
+      
+        set<id> Contactids=new set<id>();
+        list<Case> casesToUpdate=new list<Case>();
+        for(Case c:Cases){
+            if(!C.High_Priority_Notified__c && c.Priority=='High' && c.ContactId!=null){
+                Case newCase=new Case(
+                id=c.Id,
+                High_Priority_Notified__c=true);
+               
+                Contactids.add(c.ContactId);
+                casesToUpdate.add(newCase);
+            }
+        }
+        update casesToUpdate;
+        if(!Contactids.isEmpty()){
+            
+            list<Contact> Contacts=[select id,name,Description from Contact where id in:Contactids]; 
+            
+            for(Contact con:Contacts){
+                con.Description=' High Priority Case opened';
+                
+            }
+            
+            update Contacts; 
+        }
+    }
+    
+}
