@@ -1,0 +1,8 @@
+trigger CasePriorityTrigger on Case (after update) {
+   
+    if(Trigger.isAfter && Trigger.isUpdate){
+        CaseTriggerHelper.contactUpdate(Trigger.new);
+    
+    }
+
+}

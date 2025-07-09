@@ -1,7 +1,0 @@
-trigger ContactTrigger on Contact (After Update) {
-    
-    if(Trigger.isAfter && Trigger.isUpdate){
-        ContactTriggerHelper.UpdateCases(Trigger.new,Trigger.oldmap);
-    }
-
-}
