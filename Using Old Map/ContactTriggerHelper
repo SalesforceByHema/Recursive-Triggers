@@ -1,0 +1,25 @@
+public class ContactTriggerHelper {
+    
+    public static void UpdateCases(list<Contact> Contacts,map<id,Contact> oldContacts){
+        set<id> contactids=new set<id>();
+        
+        for(Contact c:Contacts){
+            contact con=oldContacts.get(c.id);
+            if(con.Description!=c.Description){
+                contactids.add(c.id);
+            }
+        }
+        
+        list<case> cases=[select id,Status,priority,ContactId from Case where ContactId in:contactids];
+        for(Case c:cases){
+            if(c.Status!='Closed'){
+                c.Description='Notified';
+                
+            }
+        }
+        update cases;
+       	
+        
+    }
+
+}
